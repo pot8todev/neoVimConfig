@@ -6,3 +6,9 @@ debug
 foo.*
 *.log
 data
+\
+\
+\
+spell
+test.php
+\

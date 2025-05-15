@@ -2,11 +2,19 @@ vim.keymap.set(
   "n",
   "<leader>fp",
   "<CMD> FzfLua files cwd=/Users/pedrojesus/Documents/pot8toDev <CR>",
-  { desc = "find from Pot8to" }
+  { desc = "telescope from Pot8to" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>sx",
-  require("fzf-lua").resume,
-  { noremap = true, silent = true, desc = "last telescope location" }
-)
+-- vim.keymap.set(
+--   "n",
+--   "<leader>fP",
+--   "<CMD> FzfLua files cwd=/Users/pedrojesus/Documents/pot8toDev/C_C++<CR>",
+--   { desc = "telescope from Pot8to" }
+-- )
+
+vim.keymap.set("n", "<leader>f~", "<CMD> FzfLua files cwd=/Users/pedrojesus <CR>", { desc = "find from Root" })
+-- vim.keymap.set(
+--   "n",
+--   "<leader>sx",
+--   require("fzf-lua").resume,
+--   { noremap = true, silent = true, desc = "last telescope location" }
+-- )

@@ -16,7 +16,7 @@ require("bufferline").setup({
       italic = false,
     },
     buffer_visible = {
-      fg = colors.gray, -- Gray text for visible but inactive tabs
+      fg = colors.sakura, -- Gray text for visible but inactive tabs
     },
     buffer = {
       fg = colors.dark_gray, -- Even darker gray for fully inactive tabs
@@ -29,11 +29,15 @@ require("bufferline").setup({
   },
 })
 function ColorMyPencils(color)
-  color = color or "kanagawa-wave"
+  color = color or "kanagawa-dragon"
   vim.cmd.colorscheme(color)
 
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+if not vim.g.already_sourced then
+  vim.g.already_sourced = true
+  vim.cmd("source " .. vim.fn.expand("%"))
+end
 ColorMyPencils()

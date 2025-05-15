@@ -1,0 +1,19 @@
+{
+  "json Snip setup": {
+    "prefix": "setup",
+    "description": "Create a basic JSON Snip",
+    "body": [
+      "{",
+      "  \"$1setup Function\": {",
+      "    \"prefix\": \"$2keyword\",",
+      "    \"description\": \"$3what it does\",",
+      "    \"body\": [",
+      "      \"function $4name(parameters)\",",
+      "      \"  \",",
+      "      \"end\"",
+      "    ]",
+      "  }",
+      "}"
+    ]
+  }
+}
