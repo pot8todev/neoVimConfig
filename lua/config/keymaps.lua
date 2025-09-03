@@ -5,7 +5,7 @@
 --#region
 
 --Code Runner
-vim.keymap.set("n", "<leader>ci", function()
+vim.keymap.set("n", "<leader>cc", function()
   local file_name = vim.api.nvim_buf_get_name(0)
   local file_type = vim.bo.filetype
 
@@ -21,6 +21,17 @@ vim.keymap.set("n", "<leader>ci", function()
   end
   vim.defer_fn(waitNpress, 250)
 end, { desc = "run code" })
+
+--makefile
+vim.keymap.set("n", "<leader>cMa", function()
+  local cwd = "/Users/pedrojesus/Documents/pot8toDev/C_C++/prog2/allegro_turtle/allegro/allegro_game"
+  local build_cmd = "cmake -B " .. cwd .. "/build -S " .. cwd
+  local compile_cmd = "cmake --build " .. cwd .. "/build"
+  local run_cmd = cwd .. "/bin/my_program1"
+
+  -- Run CMake configuration, then build, then execute
+  vim.cmd(":terminal bash -c '" .. build_cmd .. " && " .. compile_cmd .. " && " .. run_cmd .. "'")
+end, { desc = "Build & Run CMake project" })
 
 --Single key reamap
 vim.keymap.set("n", "Q", "<nop>", { remap = true })
@@ -47,7 +58,7 @@ vim.keymap.set({ "i" }, "∆", "<C-C>:m .+1<CR>==li", { silent = true, desc = "<
 
 --yank
 vim.keymap.set({ "n" }, "<leader>Y", ":let @+ = expand('%:p')<CR>", { silent = true, desc = "yank file PATH" }) -- move line down(n)
-vim.keymap.set({ "x", "v" }, "p", '"_dP', { desc = "paste without changing register" }) --paste whithout forgetting
+vim.keymap.set({ "x", "v" }, "p", '"_d<esc>P', { silent = true, desc = "paste without changing register" }) --paste whithout forgetting
 
 --indentation
 vim.keymap.set("x", ">", ">gv", { desc = "idents right" }) -- move line down(v)
@@ -59,7 +70,7 @@ vim.keymap.set({ "n", "x", "v", "i" }, "<C-c>", "<Esc>", { desc = "Remap Ctrl-C 
 vim.keymap.set({ "x" }, "g$", "$A", { remap = false, silent = true, desc = "add to the end of everyLine" })
 vim.keymap.set({ "x" }, "g_", "_I", { remap = false, silent = true, desc = "add to the start of everyLine" })
 
---moviment
+--cursor moviment
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down focus" }) -- move line down(v)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll upwards focus" }) --camera sync
 

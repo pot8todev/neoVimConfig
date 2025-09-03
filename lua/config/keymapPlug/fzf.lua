@@ -4,6 +4,12 @@ vim.keymap.set(
   "<CMD> FzfLua files cwd=/Users/pedrojesus/Documents/pot8toDev <CR>",
   { desc = "telescope from Pot8to" }
 )
+vim.keymap.set(
+  "n",
+  "<leader>fh",
+  "<CMD> FzfLua files cwd=/Applications/XAMPP/xamppfiles/htdocs/modulo5 <CR>",
+  { desc = "telescope from htdocs" }
+)
 -- vim.keymap.set(
 --   "n",
 --   "<leader>fP",

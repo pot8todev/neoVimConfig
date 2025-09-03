@@ -19,3 +19,4 @@ vim.opt.undofile = true
 --undotree
 vim.opt.scrolloff = 8
 vim.opt.winbar = "%=%m %f"
+vim.g.lazyvim_php_lsp = "phpactor"

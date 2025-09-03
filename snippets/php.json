@@ -1,4 +1,3 @@
-
 {
   "setup front": {
     "prefix": "setup",
@@ -16,5 +15,15 @@
       "</body>",
       "</html>"
     ]
+  },
+  "php tags": {
+    "prefix": ["php","<?"],
+    "description": "PHP open/close tags",
+    "body": [
+      "<?php",
+      "    $1",
+      "?>"
+    ]
   }
 }
+

@@ -4,11 +4,11 @@
     "snippets": [
       { "language": "lua", "path": "./lua.json" },
       { "language": "c", "path": "./c.json" },
-      { "language": "json", "path": "./json.json" }
+      { "language": "json", "path": "./json.json" },
       { "language": "html", "path": "./html.json" },
       { "language": "php", "path": "./php.json" },
       { "language": "blade", "path": "./blade.json" },
-      { "language": "css", "path": "./css.json" },
+      { "language": "css", "path": "./css.json" }  
     ]
   }
 }

@@ -121,7 +121,6 @@ return {
     opts = {
       ensure_installed = {
         "vimdoc",
-        "php",
         "bash",
         "html",
         "javascript",
