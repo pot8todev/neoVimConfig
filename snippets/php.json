@@ -1,0 +1,110 @@
+{
+  "setup front": {
+    "prefix": "setup",
+    "description": "setup front, like vscode",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title></title>",
+      "</head>",
+      "<body>",
+      "    ",
+      "</body>",
+      "</html>"
+    ]
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "description": "PHP foreach loop",
+    "body": [
+      "foreach ($1 as $2) {",
+      "    {$3}",
+      "}"
+    ]
+  },
+  "php tags": {
+    "prefix": ["php", "<?"],
+    "description": "PHP open/close tags",
+    "body": [
+      "<?php",
+      "    $1",
+      "?>"
+    ]
+  },
+  "strict types": {
+    "prefix": "strict",
+    "description": "Add strict types declaration",
+    "body": [
+      "declare(strict_types=1);"
+    ]
+  },
+  "inv": {
+    "prefix": "inv",
+    "description": "Create PHP __invoke method",
+    "body": [
+      "public function __invoke(${1}): ${2:void}",
+      "{",
+      "    ${3}",
+      "}"
+    ]
+  },
+  "public method": {
+    "prefix": "pubf",
+    "description": "Create a public method",
+    "body": [
+      "public function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}"
+    ]
+  },
+  "protected method": {
+    "prefix": "prof",
+    "description": "Create a protected method",
+    "body": [
+      "protected function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}"
+    ]
+  },
+  "private method": {
+    "prefix": "prif",
+    "description": "Create a private method",
+    "body": [
+      "private function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}"
+    ]
+  },
+  "public static method": {
+    "prefix": "pubsf",
+    "description": "Create a public static method",
+    "body": [
+      "public static function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}"
+    ]
+  },
+  "pest test (it) method": {
+    "prefix": "it",
+    "description": "Create a pest test",
+    "body": [
+      "it('${1}', function () {",
+      "    // Arrange",
+      "    ${0}",
+      "",
+      "    // Act",
+      "",
+      "    // Assert",
+      "",
+      "});"
+    ]
+  }
+}
+

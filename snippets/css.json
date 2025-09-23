@@ -1,0 +1,22 @@
+{
+  "Default body params  with centrilization": {
+    "prefix": "setup",
+    "description": "keyword",
+    "body": [
+    "body {",
+    "    margin: 0;",
+    "    padding: 0;",
+    "    font-family: Arial, sans-serif;",
+    "    background-color: #f4f4f4;",
+    "    color: #333;",
+    "    line-height: 1.6;",
+    "",
+    "    display: flex;",
+    "    justify-content: center;  /* Centers horizontally */",
+    "    align-items: center;      /* Centers vertically */",
+    "    height: 100vh;            /* Full viewport height */",
+    "    text-align: center;       /* Ensures text is centered */",
+    "}"
+    ]
+  }
+}

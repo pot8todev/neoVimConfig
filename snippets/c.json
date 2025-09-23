@@ -1,0 +1,51 @@
+
+{
+  "setup Function": {
+    "prefix": "setup",
+    "description": "Start C Code Setup",
+    "body": [
+      "#include <math.h>",
+      "#include <stdio.h>",
+      "#include <stdlib.h>",
+      "#include <string.h>",
+      "",
+      "int main() {",
+      "",
+      "  ",
+      "$1;",
+      "",
+      "",
+      "  ",
+      "",
+      "  return 0;",
+      "}"
+    ]
+  },
+  "personal printf": {
+    "prefix": "zzzz",
+    "description": "printf with line break",
+    "body": [
+      "printf(\"\\n$1\\n\");"
+    ]
+  },
+  "colored printf": {
+    "prefix": "colored",
+    "description": "printf with colors",
+    "body": [
+      "printf(\"\\n$1\\n\"RESET);"
+    ]
+  },
+    "printf pallet": {
+    "prefix": "pallet",
+    "description": "printf with colors",
+    "body": [
+        "#define GREEN \"\\033[1;32m\"",
+        "#define RED \"\\033[1;31m\"",
+        "#define YELLOW \"\\033[1;33m\"",
+        "#define RESET \"\\033[0m\""
+    ]
+    }
+  
+
+}
+

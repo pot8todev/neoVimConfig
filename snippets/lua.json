@@ -1,0 +1,32 @@
+{
+    "Lua Function": {
+        "prefix": "setup",
+        "description": "Creates a Lua function",
+        "body": [
+            "function name(parameters)",
+            "  ",
+            "end"
+        ]
+    },
+    "vim.keymap.set": {
+        "prefix": "vim.keymap.set",
+        "description": " Basis for keymapping on Vim",
+        "body": [
+            "vim.keymap.set({ \"$1\" }, \"$2\", \"$3\", { remap = ${4:false}, silent = true, desc = \"$5\" })"
+        ]
+    },
+    "vim command shortcut": {
+        "prefix": "<CMD><CR>",
+        "description": "CMD keymapping vim",
+        "body": [
+            "<CMD>$1<CR>"
+        ]
+    },
+    "vim control shortcut": {
+        "prefix": "control",
+        "description": "Control keymapping on vim ",
+        "body": [
+            "<C-$1>"
+        ]
+    }
+}
