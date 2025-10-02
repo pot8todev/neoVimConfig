@@ -5,7 +5,7 @@ vim.g.lazyvim_picker = "fzf"
 --indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 2 --tabsize
+vim.opt.shiftwidth = 4 --tabsize
 vim.opt.expandtab = true
 vim.opt.cindent = true --indentation for c
 
@@ -24,5 +24,5 @@ vim.opt.undofile = true
 vim.opt.gdefault = true --gdefault for substitite
 
 --undotree
-vim.opt.scrolloff = 8
+-- vim.opt.scrolloff = 8
 vim.opt.winbar = "%=%m %f"
