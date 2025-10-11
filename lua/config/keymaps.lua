@@ -74,7 +74,7 @@ vim.keymap.set({ "x", "v" }, "p", '"_dP', { silent = true, desc = "paste without
 vim.keymap.set("x", ">", ">gv", { desc = "idents right" }) -- move line down(v)
 vim.keymap.set("x", "<", "<gv", { desc = "idents left" }) -- move line down(v)
 
---ominicomplition
+--omnicomplition
 vim.keymap.set("n", "<C-space>", "li<C-x><C-o>", { remap = true }) -- J but not moving cursor
 vim.keymap.set("i", "<C-space>", "<C-x><C-o>", { remap = true }) -- J but not moving cursor
 
