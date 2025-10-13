@@ -4,7 +4,7 @@
 --
 --#region
 
---Code Runner
+-------------Code Runner-----------------
 vim.keymap.set("n", "<leader>cC", ":terminal sudo gcc ", { desc = "compile in termanal" })
 vim.keymap.set("n", "<leader>cc", function()
   local file_name = vim.api.nvim_buf_get_name(0)
@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>cc", function()
   vim.defer_fn(waitNpress, 250)
 end, { desc = "run code" })
 
---makefile
+-------------makefile for allegro-----------------
 vim.keymap.set("n", "<leader>cMa", function()
   local cwd = "/Users/pedrojesus/Documents/pot8toDev/C_C++/prog2/allegro_turtle/allegro/allegro_game"
   local build_cmd = "cmake -B " .. cwd .. "/build -S " .. cwd
@@ -39,8 +39,11 @@ vim.keymap.set("n", "<leader>cMa", function()
   vim.cmd(":terminal bash -c '" .. build_cmd .. " && " .. compile_cmd .. " && " .. run_cmd .. "'")
 end, { desc = "Build & Run CMake project" })
 
---Single key reamap
+-------------Single key reamap-----------------
 vim.keymap.set("n", "Q", "<nop>", { remap = true })
+vim.api.nvim_create_user_command("Q", "q", { desc = "quit" })
+vim.api.nvim_create_user_command("Qa", "qa", { desc = "quit ALL" })
+vim.api.nvim_create_user_command("QA", "qa", { desc = "quit ALL" })
 vim.keymap.set("n", "<Tab>", "a<Tab><C-c>", { remap = true, silent = true })
 vim.keymap.set(
   { "n" },
@@ -48,11 +51,12 @@ vim.keymap.set(
   "<CMD>echo 'visual block entered'<CR><C-v>",
   { remap = false, silent = true, desc = "enter visual block and warn" }
 )
---vim diagnostic
+
+--------------vim diagnostic--------------------
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = " Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = " Go to next [D]iagnostic message" })
 
---VSCode lineSwap
+------------VSCode lineSwap---------------
 vim.keymap.set({ "n" }, "∆", ":m .+1<CR>==", { silent = true, desc = "<A-j> alt* moves down a line" }) -- move line up(n)
 vim.keymap.set({ "n" }, "˚", ":m .-2<CR>==", { silent = true, desc = "<A-k> moves up a line" }) -- move line down(n)
 
@@ -62,7 +66,7 @@ vim.keymap.set({ "v" }, "˚", ":m '<-2<CR>gv=gv", { silent = true, desc = "<A-k>
 vim.keymap.set({ "i" }, "˚", "<C-C>:m .-2<CR>==li", { silent = true, desc = "<A-k> moves up a line" }) -- move line down(n)
 vim.keymap.set({ "i" }, "∆", "<C-C>:m .+1<CR>==li", { silent = true, desc = "<A-j> alt* moves down a line" }) -- move line up(n)
 
---yank
+------------------yank-----------------
 vim.keymap.set("n", "<leader>Y", function()
   vim.cmd([[let @+ = expand('%:p:h')]])
   print("CWD yanked")
@@ -70,30 +74,30 @@ end, { silent = true, desc = "Yank file path cwd" })
 
 vim.keymap.set({ "x", "v" }, "p", '"_dP', { silent = true, desc = "paste without changing register" }) --paste whithout forgetting
 
---indentation
+-------------indentation-----------------
 vim.keymap.set("x", ">", ">gv", { desc = "idents right" }) -- move line down(v)
 vim.keymap.set("x", "<", "<gv", { desc = "idents left" }) -- move line down(v)
 
---omnicomplition
+-------------omnicomplition-----------------
 vim.keymap.set("n", "<C-space>", "li<C-x><C-o>", { remap = true }) -- J but not moving cursor
-vim.keymap.set("i", "<C-space>", "<C-x><C-o>", { remap = true }) -- J but not moving cursor
+vim.keymap.set("i", "<C-space>", "<C-c><C-space>", { remap = true }) -- J but not moving cursor
 
-----cursor
+---------------cursor-----------------
 vim.keymap.set("n", "J", "mzJ`z") -- J but not moving cursor
 vim.keymap.set({ "n", "x", "v", "i" }, "<C-c>", "<Esc>", { desc = "Remap Ctrl-C to Escape" }) -- stupid remap
 vim.keymap.set({ "x" }, "g$", "$A", { remap = false, silent = true, desc = "add to the end of everyLine" })
 vim.keymap.set({ "x" }, "g_", "_I", { remap = false, silent = true, desc = "add to the start of everyLine" })
 
---cursor moviment
+-------------cursor moviment-----------------
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down focus" }) -- move line down(v)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll upwards focus" }) --camera sync
 
-----Buffer
+---------------Buffer-----------------
 vim.keymap.set("n", "<leader>bH", "<leader>bl", { silent = true, remap = true, desc = "Delete buffers to the LEFT" })
 vim.keymap.set("n", "<leader>bL", "<leader>br", { silent = true, remap = true, desc = "Delete buffers to the RIGHT" })
 vim.keymap.set("n", "gb", "<CMD>e #<CR>", { silent = true, remap = true, desc = "go back to previous file" }) -- going back in file navegation
 
---bufferline moviment
+-------------bufferline moviment-----------------
 vim.keymap.set("n", "¡", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
 vim.keymap.set("n", "™", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
 
@@ -109,7 +113,7 @@ vim.keymap.set(
   { remap = true, silent = true, desc = "source file" }
 )
 
---numbers 1 2 3 4 5..
+-------------numbers 1 2 3 4 5..-----------------
 local function insert_numbers(name, n)
   local buf = vim.api.nvim_get_current_buf()
   local row = vim.api.nvim_win_get_cursor(0)[1] -- current line (1-based)
@@ -135,5 +139,5 @@ vim.api.nvim_create_user_command(
   { nargs = "+" } -- requires at least 1 arg, allows more
 )
 
---Plug-ins Keymaps
+-------------Plug-ins Keymaps-----------------
 require("config.keymapPlug.keymapPlug")

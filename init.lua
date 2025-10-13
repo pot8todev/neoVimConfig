@@ -24,5 +24,5 @@ vim.opt.undofile = true
 vim.opt.gdefault = true --gdefault for substitite
 
 --undotree
--- vim.opt.scrolloff = 8
+vim.opt.scrolloff = 8
 vim.opt.winbar = "%=%m %f"
