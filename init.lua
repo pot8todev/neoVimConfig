@@ -1,5 +1,23 @@
+-- Automatically use vimdoc for help buffers so Tree-sitter works
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+-- doctype()  for Tree-sitter help
+function _G.doctype()
+  local ft = vim.bo.filetype
+  local lang = vim.treesitter.language.get_lang(ft)
+
+  if lang == nil then
+    vim.notify("No Treesitter parser for filetype '" .. ft .. "'. Setting filetype=vimdoc", vim.log.levels.INFO)
+    vim.bo.filetype = "vimdoc"
+  end
+end
+vim.api.nvim_create_autocmd("User", {
+  pattern = "BufferLineColorsLoaded",
+  callback = function()
+    require("nvim-web-devicons").set_up_highlights()
+  end,
+})
+
 vim.g.lazyvim_picker = "fzf"
 
 --indentation

@@ -22,13 +22,13 @@ local colors = {
 
 -- Function to set the colorscheme
 function ColorMyPencils(color)
-  color = color or "kanagawa-wave" -- Default to "kanagawa-wave" if no color is specified
+  color = color or "kanagawa-paper" -- Default to "kanagawa-wave" if no color is specified
   vim.cmd.colorscheme(color)
 
   require("bufferline").setup({
     highlights = {
       buffer_selected = {
-        fg = colors.Yellow, -- Green text for the active tab
+        fg = colors.green, -- Green text for the active tab
         bold = true,
         italic = false,
       },
