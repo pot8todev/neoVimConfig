@@ -1,8 +1,28 @@
 return {
-  -- Dowloaded themes
-  { "rebelot/kanagawa.nvim" },
+  -- Kanagawa theme
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      colors = {
+        palette = {
+          -- override some colors
+          sumiInk0 = "#000000",
+          fujiWhite = "#FFFFFF",
+        },
+        theme = {
+          wave = {
+            ui = {
+              float = {
+                bg = "none", -- transparent floating windows
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 
-  -- Configure LazyVim to load themes
+  -- LazyVim configuration
   {
     "LazyVim/LazyVim",
     opts = {

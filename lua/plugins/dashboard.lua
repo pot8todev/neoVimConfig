@@ -32,7 +32,7 @@ return {
       }
 
       vim.g.startify_commands = {
-        { "  Restore Session", "lua require('persistence').load()" },
+        { "  Restore Last", "lua require('persistence').load()" },
         { "  Restore Session Log", "lua require('persistence').select()" },
         { "  Lazy Extras", "LazyExtras" },
       }
