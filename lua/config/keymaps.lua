@@ -1,4 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 --
@@ -34,7 +33,16 @@ vim.keymap.set("n", "<leader>cMa", function()
 end, { desc = "Build & Run CMake project" })
 
 --Single key reamap
-vim.keymap.set("n", "Q", "<nop>", { remap = true })
+vim.api.nvim_create_user_command("Q", function()
+  vim.cmd("q")
+end, { desc = "quit" })
+vim.api.nvim_create_user_command("Qa", function()
+  vim.cmd("qa")
+end, { desc = "quit all" })
+vim.api.nvim_create_user_command("QA", function()
+  vim.cmd("qa")
+end, { desc = "quit all" })
+
 vim.keymap.set("n", "<Tab>", "a<Tab><C-c>", { remap = true, silent = true })
 vim.keymap.set(
   { "n" },
@@ -42,9 +50,6 @@ vim.keymap.set(
   "<CMD>echo 'visual block entered'<CR><C-v>",
   { remap = false, silent = true, desc = "enter visual block and warn" }
 )
---vim diagnostic
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = " Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = " Go to next [D]iagnostic message" })
 
 --VSCode lineSwap
 vim.keymap.set({ "n" }, "∆", ":m .+1<CR>==", { silent = true, desc = "<A-j> alt* moves down a line" }) -- move line up(n)
@@ -95,4 +100,4 @@ vim.keymap.set(
   { remap = true, silent = true, desc = "source file" }
 )
 --Plug-ins Keymaps
-require("config.keymapPlug.keymapPlug")
+require("config.keymapPlug.keymapPlugAux")

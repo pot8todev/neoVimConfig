@@ -1,7 +1,5 @@
 require("config.lazy")
-require("config.autocmd")
 -- require("plugins.obsidian")
-require("config.colors")
 
 --indentation
 vim.opt.tabstop = 4
@@ -15,6 +13,7 @@ vim.opt.spell = false
 -- vim.opt.spelllang = "pt_br"
 
 vim.opt.undofile = true
+vim.opt.cursorcolumn = true
 
 --undotree
 vim.opt.scrolloff = 8
