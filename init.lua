@@ -1,6 +1,7 @@
 require("config.lazy")
---indentation
-vim.opt.tabstop = 4
+require("config.colors")
+require("config.fzf")
+
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
