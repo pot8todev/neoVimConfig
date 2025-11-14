@@ -16,7 +16,8 @@ end
 vim.keymap.set("n", "<leader>e", function()
   toggle_oil_with_preview()
 end, { remap = true, silent = true, desc = "Floating Explorer Oil" })
-
--- vim.keymap.set("n", "<leader>E", function()
---   toggle_oil_with_preview(vim.loop.cwd())
--- end, { remap = true, silent = true, desc = "Floating Explorer Oil in Terminal CWD" })
+local cwd = vim.loop.cwd()
+local parent = vim.fs.dirname(cwd)
+vim.keymap.set("n", "<leader>E", function()
+  toggle_oil_with_preview(parent)
+end, { remap = true, silent = true, desc = "Floating Explorer Oil in Terminal CWD" })
