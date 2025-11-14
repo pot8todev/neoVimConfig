@@ -56,3 +56,11 @@ function ColorMyPencils(Scheme)
 end
 -- Automatically run ColorMyPencils
 ColorMyPencils()
+vim.opt.cursorline = true
+
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "Startified",
+--   callback = function()
+--     vim.opt_local.cursorline = false
+--   end,
+-- })

@@ -1,5 +1,5 @@
 -- tab Highlight
-local colors = {
+_G.Colors = {
   white = "#DCD7BA",
   Yellow = "#ffcc00",
   sakura = "#D27E99",
@@ -11,18 +11,18 @@ local colors = {
 require("bufferline").setup({
   highlights = {
     buffer_selected = {
-      fg = colors.green, -- Yellow text for the active tab
+      fg = Colors.green, -- Yellow text for the active tab
       bold = true,
       italic = false,
     },
     buffer_visible = {
-      fg = colors.sakura, -- Gray text for visible but inactive tabs
+      fg = Colors.sakura, -- Gray text for visible but inactive tabs
     },
     buffer = {
-      fg = colors.dark_gray, -- Even darker gray for fully inactive tabs
+      fg = Colors.dark_gray, -- Even darker gray for fully inactive tabs
     },
     tab_selected = {
-      fg = colors.Yellow,
+      fg = Colors.Yellow,
       bold = true,
       italic = false,
     },
