@@ -1,11 +1,28 @@
 return {
   "stevearc/oil.nvim",
-  ---@module 'oil'
-  ---@type oil.SetupOpts
-  opts = {},
-  -- Optional dependencies
-  dependencies = { { "nvim-mini/mini.icons", opts = {} } },
-  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-  -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  opts = {
+    float = {
+      -- Floating window size (relative to editor size)
+      max_width = 0.8,
+      max_height = 100,
+      border = "rounded",
+    },
+    columns = {
+      "icon",
+      -- { "mtime", format = "%d %b" },
+    },
+
+    view_options = {
+      sort = {
+        { "type", "asc" },
+        { "mtime", "desc" },
+      },
+    },
+    delete_to_trash = true,
+  },
   lazy = false,
+
+  dependencies = {
+    { "nvim-mini/mini.icons", opts = {} },
+  },
 }

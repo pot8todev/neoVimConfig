@@ -29,13 +29,12 @@ return {
         { type = "commands", header = { "    Commands" } },
         { type = "files", header = { "   Recent Files" } },
         { type = "bookmarks", header = { "  bookmarks" } },
-        { type = "dir", header = { "  CWD" } },
       }
 
       vim.g.startify_commands = {
-        { "  Restore Last", "lua require('persistence').load()" },
+        { "  Oil", "lua require('oil.actions').open_cwd.callback()" },
+        -- { "  Restore Last", "lua require('persistence').load()" },
         { "  Restore Session Log", "lua require('persistence').select()" },
-        -- { "  Lazy Extras", "LazyExtras" },
       }
       -- Unmap certain keys in Startify buffer
       vim.api.nvim_create_autocmd("User", {
@@ -47,7 +46,7 @@ return {
         end,
       })
       vim.g.startify_files_number = 8
-      vim.g.startify_custom_indices = { "s", "S" } -- commands aliasese
+      vim.g.startify_custom_indices = { "o", "S" } -- commands aliasese
       vim.g.startify_relative_path = 1
       vim.g.startify_abbreviate_path = 1
     end,
