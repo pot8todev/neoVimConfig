@@ -11,15 +11,15 @@ _G.Colors = {
 require("bufferline").setup({
   highlights = {
     buffer_selected = {
-      fg = Colors.sakura, -- Yellow text for the active tab
+      fg = Colors.waveRed, -- Yellow text for the active tab
       bold = true,
       italic = false,
     },
     buffer_visible = {
-      fg = Colors.gray, -- Gray text for visible but inactive tabs
+      fg = Colors.sakura, -- Gray text for visible but inactive tabs
     },
     buffer = {
-      fg = Colors.dark_gray, -- Even darker gray for fully inactive tabs
+      fg = Colors.sakura, -- Even darker gray for fully inactive tabs
     },
     tab_selected = {
       fg = Colors.sakura,

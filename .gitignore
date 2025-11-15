@@ -12,3 +12,5 @@ data
 spell
 test.php
 \
+.DS_Store
+a.out

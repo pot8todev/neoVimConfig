@@ -36,8 +36,8 @@ return {
       vim.g.startify_custom_footer = centeredFooter
       vim.g.startify_lists = {
         { type = "commands", header = { "    Commands" } },
-        { type = "files", header = { "   Recent Files" } },
-        { type = "dir", header = { "    Cwd" } },
+        -- { type = "files", header = { "   Recent Files" } },
+        { type = "dir", header = { "     recent" } },
         { type = "bookmarks", header = { "  bookmarks" } },
       }
 
@@ -59,7 +59,8 @@ return {
       vim.g.startify_path_formatter = function(path)
         return vim.fn.fnamemodify(path, ":t")
       end
-      vim.g.startify_files_number = 4
+
+      vim.g.startify_files_number = 6
       vim.g.startify_custom_indices = { "o", "S" } -- commands aliasese
       vim.g.startify_relative_path = 1
       vim.g.startify_abbreviate_path = 1

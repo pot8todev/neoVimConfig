@@ -15,6 +15,7 @@ return {
     view_options = {
       sort = {
         { "type", "asc" }, --separate files from folders
+        { "size", "desc" }, --separate files from folders
         { "mtime", "desc" }, --most recent on top
       },
     },
