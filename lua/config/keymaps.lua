@@ -22,12 +22,14 @@ local function openFloatTerminal()
 end
 
 -------------------Code Runner------------------//
+
 vim.keymap.set("n", "<leader>c.", function()
   local file_name = vim.api.nvim_buf_get_name(0)
   local file_type = vim.bo.filetype
+  local exists_makefile = vim.fn.findfile("make.h")
+  local filepath = _G.filePath
 
   local function waitNpress()
-    --
     vim.api.nvim_feedkeys("i", "n", false)
   end
 
@@ -36,13 +38,18 @@ vim.keymap.set("n", "<leader>c.", function()
     vim.cmd(":terminal lua" .. file_name)
   elseif file_type == "c" then
     openFloatTerminal()
-    -- vim.cmd("terminal pokemon-colorscripts -r 1-6 --no-title ; gcc " .. file_name .. " && ./a.out")
-    vim.cmd("terminal gcc " .. file_name .. " && ./a.out ; pokemon-colorscripts -r --no-title ")
-  end
+    local target = filepath or file_name -- if _G.filepath was defined
+    local cmd = string.format("terminal gcc %s && ./a.out ; pokemon-colorscripts -r 1-6 --no-title", target)
+    vim.cmd(cmd)
+  end -- pick compile target: user-defined OR current file
   vim.defer_fn(waitNpress, 250)
 end, { desc = "run code" })
 
+vim.keymap.set("n", "<leader>c>", function()
+  _G.filePath = vim.fn.input("set filePath: ")
+end, { desc = "set global filePath" })
 -------------------makefile------------------//
+---
 vim.keymap.set("n", "<leader>cMa", function()
   local cwd = "/Users/pedrojesus/Documents/pot8toDev/C_C++/prog2/allegro_turtle/allegro/allegro_game"
   local build_cmd = "cmake -B " .. cwd .. "/build -S " .. cwd
