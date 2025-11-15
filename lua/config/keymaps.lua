@@ -3,6 +3,24 @@
 --
 --#region
 
+local function openFloatTerminal()
+  local buf = vim.api.nvim_create_buf(false, true)
+  local width = math.floor(vim.o.columns * 0.9)
+  local height = math.floor(vim.o.lines * 0.7)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "rounded",
+  })
+end
+
 -------------------Code Runner------------------//
 vim.keymap.set("n", "<leader>c.", function()
   local file_name = vim.api.nvim_buf_get_name(0)
@@ -14,9 +32,12 @@ vim.keymap.set("n", "<leader>c.", function()
   end
 
   if file_type == "lua" then
+    openFloatTerminal()
     vim.cmd(":terminal lua" .. file_name)
   elseif file_type == "c" then
-    vim.cmd(":terminal gcc " .. file_name .. "; ./a.out")
+    openFloatTerminal()
+    -- vim.cmd("terminal pokemon-colorscripts -r 1-6 --no-title ; gcc " .. file_name .. " && ./a.out")
+    vim.cmd("terminal gcc " .. file_name .. " && ./a.out ; pokemon-colorscripts -r --no-title ")
   end
   vim.defer_fn(waitNpress, 250)
 end, { desc = "run code" })

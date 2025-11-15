@@ -14,25 +14,35 @@ return {
       -- Setup Pokémon
       pokemon.setup({
         number = formatted,
-        size = "large",
+        size = "small",
       })
 
       -- Get Pokémon header (a list of strings)
       local header = pokemon.header()
+      local stats = require("lazy").stats()
+
+      local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+
+      local footer = {
+        "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+      }
+      local centeredFooter = vim.fn["startify#center"](footer)
 
       -- Center the header using Startify's built-in function
       local centered = vim.fn["startify#center"](header)
 
       -- Assign the centered header to Startify
       vim.g.startify_custom_header = centered
+      vim.g.startify_custom_footer = centeredFooter
       vim.g.startify_lists = {
         { type = "commands", header = { "    Commands" } },
         { type = "files", header = { "   Recent Files" } },
+        { type = "dir", header = { "    Cwd" } },
         { type = "bookmarks", header = { "  bookmarks" } },
       }
 
       vim.g.startify_commands = {
-        { "  Oil", "lua require('oil.actions').open_cwd.callback()" },
+        { "  Oil", "Oil ~/Documents/pot8toDev/" },
         -- { "  Restore Last", "lua require('persistence').load()" },
         { "  Restore Session Log", "lua require('persistence').select()" },
       }
@@ -45,7 +55,11 @@ return {
           end
         end,
       })
-      vim.g.startify_files_number = 8
+
+      vim.g.startify_path_formatter = function(path)
+        return vim.fn.fnamemodify(path, ":t")
+      end
+      vim.g.startify_files_number = 4
       vim.g.startify_custom_indices = { "o", "S" } -- commands aliasese
       vim.g.startify_relative_path = 1
       vim.g.startify_abbreviate_path = 1

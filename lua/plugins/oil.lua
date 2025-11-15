@@ -14,13 +14,14 @@ return {
 
     view_options = {
       sort = {
-        { "type", "asc" },
-        { "mtime", "desc" },
+        { "type", "asc" }, --separate files from folders
+        { "mtime", "desc" }, --most recent on top
       },
     },
     delete_to_trash = true,
   },
   lazy = false,
+  priority = 1000,
 
   dependencies = {
     { "nvim-mini/mini.icons", opts = {} },
