@@ -25,8 +25,8 @@ return {
 
     -- myNormal
     stiffness = 0.3,
-    trailing_stiffness = 0.5,
-    damping = 0.80, -- 0.85     [0, 1]
+    trailing_stiffness = 0.4,
+    damping = 0.95, -- 0.85     [0, 1]
     distance_stop_animating = 0.5,
   },
 }
