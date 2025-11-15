@@ -14,7 +14,9 @@ vim.opt.spell = false
 vim.opt.undofile = true
 vim.opt.cursorcolumn = true
 
+vim.g.lazyvim_php_lsp = "phpactor"
 --undotree
 vim.opt.scrolloff = 8
 vim.opt.winbar = "%=%m %f"
-vim.g.lazyvim_php_lsp = "phpactor"
+vim.g.snacks_dashboard_preset = false
+vim.g.autochdir = true

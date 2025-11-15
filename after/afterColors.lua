@@ -1,5 +1,5 @@
 -- Define colors for use throughout
-local colors = {
+_G.colors = {
   white = "#DCD7BA",
   Yellow = "#ffcc00",
   sakura = "#D27E99",
@@ -19,7 +19,7 @@ function ColorMyPencils(color)
   require("bufferline").setup({
     highlights = {
       buffer_selected = {
-        fg = colors.Yellow, -- Green text for the active tab
+        fg = colors.green, -- Green text for the active tab
         bold = true,
         italic = false,
       },
@@ -30,7 +30,7 @@ function ColorMyPencils(color)
         fg = colors.dark_gray, -- Darker gray for fully inactive tabs
       },
       tab_selected = {
-        fg = colors.Yellow, -- Yellow text for the selected tab
+        fg = colors.green, -- Yellow text for the selected tab
         bold = true,
         italic = false,
       },
