@@ -26,7 +26,6 @@ end
 vim.keymap.set("n", "<leader>c.", function()
   local file_name = vim.api.nvim_buf_get_name(0)
   local file_type = vim.bo.filetype
-  local exists_makefile = vim.fn.findfile("make.h")
   local filepath = _G.filePath
 
   local function waitNpress()
@@ -37,9 +36,9 @@ vim.keymap.set("n", "<leader>c.", function()
     openFloatTerminal()
     vim.cmd(":terminal lua" .. file_name)
   elseif file_type == "c" then
-    openFloatTerminal()
     local target = filepath or file_name -- if _G.filepath was defined
     local cmd = string.format("terminal gcc %s && ./a.out ; pokemon-colorscripts -r 1-6 --no-title", target)
+    openFloatTerminal()
     vim.cmd(cmd)
   end -- pick compile target: user-defined OR current file
   vim.defer_fn(waitNpress, 250)
@@ -49,7 +48,6 @@ vim.keymap.set("n", "<leader>c>", function()
   _G.filePath = vim.fn.input("set filePath: ")
 end, { desc = "set global filePath" })
 -------------------makefile------------------//
----
 vim.keymap.set("n", "<leader>cMa", function()
   local cwd = "/Users/pedrojesus/Documents/pot8toDev/C_C++/prog2/allegro_turtle/allegro/allegro_game"
   local build_cmd = "cmake -B " .. cwd .. "/build -S " .. cwd
@@ -95,7 +93,7 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
   local parent = vim.fs.dirname(cwd)
   vim.fn.setreg("+", parent)
 end, { silent = true, desc = "yank file PATH" }) -- move line down(n)
-vim.keymap.set({ "x", "v" }, "p", '"_d<esc>P', { silent = true, desc = "paste without changing register" }) --paste whithout forgetting
+vim.keymap.set({ "x", "v" }, "p", '"_dP', { silent = true, desc = "paste without changing register" }) --paste whithout forgetting
 
 -------------------indentation------------------//
 vim.keymap.set("x", ">", ">gv", { desc = "idents right" }) -- move line down(v)
