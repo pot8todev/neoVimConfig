@@ -1,32 +1,44 @@
-
 {
-  "setup Function": {
-    "prefix": "setup",
-    "description": "Start C Code Setup",
-    "body": [
-      "#include <math.h>",
-      "#include <stdio.h>",
-      "#include <stdlib.h>",
-      "#include <string.h>",
-      "",
-      "int main() {",
-      "",
-      "  ",
-      "$1;",
-      "",
-      "",
-      "  ",
-      "",
-      "  return 0;",
-      "}"
-    ]
-  },
-  "personal printf": {
-    "prefix": "zzzz",
-    "description": "printf with line break",
-    "body": [
-      "printf(\"\\n$1\\n\");"
-    ]
-  }
+    "setup Function": {
+        "prefix": "setup",
+        "description": "Start C Code Setup",
+        "body": [
+            "#include <stdio.h>",
+            "#include <stdlib.h>",
+            "#include <string.h>",
+            "",
+            "int main() {",
+            "  $1;",
+            "  return 0;",
+            "}"
+        ]
+    },
+    "color defines": {
+        "prefix": "colors",
+        "description": "Insert ANSI color #defines",
+        "body": [
+            "#define GREEN \"\\\\033[1;32m\"",
+            "#define RED \"\\\\033[1;31m\"",
+            "#define YELLOW \"\\\\033[1;33m\"",
+            "#define RESET \"\\\\033[0m\""
+        ]
+    },
+    "validated scanf": {
+        "prefix": "vscan",
+        "description": "scanf with validation loop",
+        "body": [
+            "printf(\"\\n${1:Mensagem}: \");",
+            "while (scanf(\" %${2:49s}\", ${3:variavel}) != 1) {",
+            "  while (getchar() != '\\n');",
+            "  printf(RED \"\\n${4:Entrada inválida. Tente novamente}: \" RESET);",
+            "}"
+        ]
+    },
+    "personal printf": {
+        "prefix": "zzzz",
+        "description": "printf with line break",
+        "body": [
+            "printf(\"\\n$1\\n\");"
+        ]
+    }
 }
-

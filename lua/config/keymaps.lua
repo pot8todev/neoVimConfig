@@ -3,61 +3,6 @@
 --
 --#region
 
-local function openFloatTerminal()
-  local buf = vim.api.nvim_create_buf(false, true)
-  local width = math.floor(vim.o.columns * 0.9)
-  local height = math.floor(vim.o.lines * 0.7)
-  local row = math.floor((vim.o.lines - height) / 2)
-  local col = math.floor((vim.o.columns - width) / 2)
-
-  vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width = width,
-    height = height,
-    row = row,
-    col = col,
-    style = "minimal",
-    border = "rounded",
-  })
-end
-
--------------------Code Runner------------------//
-
-vim.keymap.set("n", "<leader>c.", function()
-  local file_name = vim.api.nvim_buf_get_name(0)
-  local file_type = vim.bo.filetype
-  local filepath = _G.filePath
-
-  local function waitNpress()
-    vim.api.nvim_feedkeys("i", "n", false)
-  end
-
-  if file_type == "lua" then
-    openFloatTerminal()
-    vim.cmd(":terminal lua" .. file_name)
-  elseif file_type == "c" then
-    local target = filepath or file_name -- if _G.filepath was defined
-    local cmd = string.format("terminal gcc %s && ./a.out ; pokemon-colorscripts -r 1-6 --no-title", target)
-    openFloatTerminal()
-    vim.cmd(cmd)
-  end -- pick compile target: user-defined OR current file
-  vim.defer_fn(waitNpress, 250)
-end, { desc = "run code" })
-
-vim.keymap.set("n", "<leader>c>", function()
-  _G.filePath = vim.fn.input("set filePath: ")
-end, { desc = "set global filePath" })
--------------------makefile------------------//
-vim.keymap.set("n", "<leader>cMa", function()
-  local cwd = "/Users/pedrojesus/Documents/pot8toDev/C_C++/prog2/allegro_turtle/allegro/allegro_game"
-  local build_cmd = "cmake -B " .. cwd .. "/build -S " .. cwd
-  local compile_cmd = "cmake --build " .. cwd .. "/build"
-  local run_cmd = cwd .. "/bin/my_program1"
-
-  -- Run CMake configuration, then build, then execute
-  vim.cmd(":terminal bash -c '" .. build_cmd .. " && " .. compile_cmd .. " && " .. run_cmd .. "'")
-end, { desc = "Build & Run CMake project" })
-
 -------------------Single key reamap------------------//
 vim.api.nvim_create_user_command("Q", function()
   vim.cmd("q")
@@ -89,7 +34,7 @@ vim.keymap.set({ "i" }, "∆", "<C-C>:m .+1<CR>==li", { silent = true, desc = "<
 
 -------------------yank------------------//
 vim.keymap.set({ "n" }, "<leader>Y", function()
-  local cwd = vim.loop.cwd()
+  local cwd = vim.uv.cwd()
   local parent = vim.fs.dirname(cwd)
   vim.fn.setreg("+", parent)
 end, { silent = true, desc = "yank file PATH" }) -- move line down(n)
@@ -113,6 +58,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll upwards focus" }) --cam
 vim.keymap.set("n", "<leader>bH", "<leader>bl", { silent = true, remap = true, desc = "Delete buffers to the LEFT" })
 vim.keymap.set("n", "<leader>bL", "<leader>br", { silent = true, remap = true, desc = "Delete buffers to the RIGHT" })
 vim.keymap.set("n", "gb", "<CMD>e #<CR>", { silent = true, remap = true, desc = "go back to previous file" }) -- going back in file navegation
+vim.keymap.set("x", "S", ":s/", { remap = true, desc = "substitute" }) -- going back in file navegation
+vim.keymap.set("n", "S", ":%s/", { remap = true, desc = "substitute" }) -- going back in file navegation
 
 -------------------bufferline moviment------------------//
 vim.keymap.set("n", "¡", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
@@ -128,4 +75,4 @@ vim.keymap.set({ "n" }, "<C-s>", function()
   print("file Sourced *")
 end, { remap = true, silent = true, desc = "source file" })
 -------------------Plug-ins Keymaps------------------//
-require("config.keymapPlug.keymapPlugAux")
+require("config.plugMapping.keymapPlugAux")

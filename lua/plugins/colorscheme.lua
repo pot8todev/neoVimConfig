@@ -38,6 +38,13 @@ return {
       end,
     },
   },
+  {
+    "murtaza-u/gruvqueen",
+  },
+  {
+    "sainnhe/gruvbox-material",
+  },
+
   -- LazyVim configuration
   {
     "LazyVim/LazyVim",

@@ -19,7 +19,10 @@ return {
         { "mtime", "desc" }, --most recent on top
       },
     },
+
+    default_file_explorer = true,
     delete_to_trash = true,
+    skip_confirm_for_simple_edits = true,
   },
   lazy = false,
   priority = 1000,

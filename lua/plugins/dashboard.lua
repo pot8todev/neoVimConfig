@@ -14,7 +14,7 @@ return {
       -- Setup Pokémon
       pokemon.setup({
         number = formatted,
-        size = "small",
+        size = "large",
       })
 
       -- Get Pokémon header (a list of strings)
