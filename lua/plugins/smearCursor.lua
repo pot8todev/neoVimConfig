@@ -24,9 +24,9 @@ return {
     -- hide_target_hack = true,
 
     -- myNormal
-    stiffness = 0.3,
-    trailing_stiffness = 0.4,
-    damping = 0.95, -- 0.85     [0, 1]
-    distance_stop_animating = 0.5,
+    stiffness = 0.8,
+    trailing_stiffness = 0.7,
+    damping = 0.85, -- 0.85     [0, 1]
+    distance_stop_animating = 0.7,
   },
 }

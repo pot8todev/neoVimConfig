@@ -35,8 +35,7 @@ vim.keymap.set({ "i" }, "∆", "<C-C>:m .+1<CR>==li", { silent = true, desc = "<
 -------------------yank------------------//
 vim.keymap.set({ "n" }, "<leader>Y", function()
   local cwd = vim.uv.cwd()
-  local parent = vim.fs.dirname(cwd)
-  vim.fn.setreg("+", parent)
+  vim.fn.setreg("+", cwd)
 end, { silent = true, desc = "yank file PATH" }) -- move line down(n)
 vim.keymap.set({ "x", "v" }, "p", '"_dP', { silent = true, desc = "paste without changing register" }) --paste whithout forgetting
 
@@ -50,7 +49,7 @@ vim.keymap.set({ "n", "x", "v", "i" }, "<C-c>", "<Esc>", { desc = "Remap Ctrl-C 
 vim.keymap.set({ "x" }, "g$", "$A", { remap = false, silent = true, desc = "add to the end of everyLine" })
 vim.keymap.set({ "x" }, "g_", "_I", { remap = false, silent = true, desc = "add to the start of everyLine" })
 
--------------------cursor moviment------------------//
+------------------cursor moviment------------------//
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down focus" }) -- move line down(v)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll upwards focus" }) --camera sync
 

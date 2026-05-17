@@ -21,35 +21,10 @@ return {
       },
     },
   },
-
-  {
-    "thesimonho/kanagawa-paper.nvim",
-    opts = {
-
-      overrides = function(colors)
-        return {
-          ["@field"] = { italic = true, sp = colors.palette.autumnRed },
-          ["@property"] = { italic = true, sp = colors.palette.autumnRed },
-          ["@field.lua"] = { italic = true, undercurl = true, sp = colors.palette.autumnRed },
-          -- ["@variable"] = { fg = Colors.pYellow, italic = true },
-          -- ["@variable.member"] = { fg = Colors.pYellow, italic = true },
-          -- ["@variable.parameter"] = { fg = "Colors.pYellow", italic = true },
-        }
-      end,
-    },
-  },
   {
     "murtaza-u/gruvqueen",
   },
   {
     "sainnhe/gruvbox-material",
-  },
-
-  -- LazyVim configuration
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa-wave",
-    },
   },
 }

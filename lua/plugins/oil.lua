@@ -6,6 +6,16 @@ return {
       max_width = 0.8,
       max_height = 100,
       border = "rounded",
+      get_win_title = function()
+        local dir = require("oil").get_current_dir(0)
+        if not dir then
+          return ""
+        end
+        return vim.fn.fnamemodify(dir, ":t")
+      end,
+      win_options = {
+        winblend = 0,
+      },
     },
     columns = {
       "icon",
@@ -15,8 +25,8 @@ return {
     view_options = {
       sort = {
         { "type", "asc" }, --separate files from folders
-        { "size", "desc" }, --separate files from folders
-        { "mtime", "desc" }, --most recent on top
+        -- { "size", "desc" }, --separate files from folders by size
+        -- { "mtime", "desc" }, --most recent on top
       },
     },
 
