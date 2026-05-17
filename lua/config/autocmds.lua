@@ -13,6 +13,8 @@
 
 -- Function to set the colorscheme
 
+local codeRunner = require("config.plugMapping.codeRunner")
+
 local function get_runner_buf()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_valid(buf) then
@@ -29,38 +31,43 @@ end
 
 local buffnbr = get_runner_buf()
 _G.runner_buf = buffnbr
-
-local build_cmd = function(target, file_type)
-  local cmd
-  if file_type == "lua" then
-    cmd = { "lua", target }
-  elseif file_type == "python" then
-    cmd = { ".venv/bin/python", target }
-  elseif file_type == "c" then
-    return {
-      "sh",
-      "-c",
-      string.format("gcc %s -o /tmp/nvim_run && /tmp/nvim_run", vim.fn.shellescape(target)),
-    }
-  end
-  if not cmd then
-    return
-  end
-  return cmd
-end
+vim.api.nvim_set_hl(0, "CodeRunnerFile", {
+  fg = "#98BB6C",
+  bold = true,
+})
+vim.api.nvim_set_hl(0, "ErrorMsg", {
+  fg = "#9c3f42",
+  bold = true,
+})
+local ns = vim.api.nvim_create_namespace("coderunner")
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("testing", { clear = true }),
   pattern = { "*.lua", "*.py", "*.c" },
 
   callback = function(args)
-    local file_name = args.file
-    local file_type = vim.bo[args.buf].filetype
+    local file_name = args.file -- aka vim.api.nvim_buf_get_name(args.buf), but O[1]
+    local file_type = vim.bo[args.buf].filetype -- aka vim.fn.fnamemodify(vim.api.nvim_buf_get_name(args.buf), ":t" but O[1]
     local target = _G.fileGroup or file_name
 
-    local message = string.format("%s output:", file_name)
-    vim.api.nvim_buf_set_lines(buffnbr, 0, -1, false, { message })
-    local job_cmd = build_cmd(target, file_type)
+    if not vim.b.Autocompile then
+      local message = string.format("autoCompile not active for %s", file_name)
+      vim.api.nvim_buf_set_lines(buffnbr, 0, -1, false, { message })
+
+      return
+    end
+
+    local line = string.format("%s output:", file_name)
+
+    vim.api.nvim_buf_set_lines(buffnbr, 0, -1, false, { line })
+
+    vim.api.nvim_buf_set_extmark(buffnbr, ns, 0, 0, {
+      end_col = #file_name,
+      hl_group = "CodeRunnerFile",
+      hl_mode = "combine",
+    })
+
+    local job_cmd = codeRunner.build_cmd(target, file_type) --sets the correct compilation command
 
     if not job_cmd then
       return
@@ -75,20 +82,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         end
         vim.api.nvim_buf_set_lines(buffnbr, -1, -1, false, data)
       end,
+
       on_stderr = function(_, data)
         if not data then
           return
         end
-        vim.api.nvim_buf_set_lines(buffnbr, -1, -1, false, data)
-        -- make errors red
-        local ns = vim.api.nvim_create_namespace("coderunner_errors")
 
+        -- make errors red
+        local start = vim.api.nvim_buf_line_count(buffnbr)
+        vim.api.nvim_buf_set_lines(buffnbr, -1, -1, false, data)
         for i, _ in ipairs(data) do
-          local line = vim.api.nvim_buf_line_count(buffnbr) - #data + i - 1
+          local line = start + i - 1
 
           vim.api.nvim_buf_set_extmark(buffnbr, ns, line, 0, {
-            end_line = line + 1,
-            hl_group = "ErrorMsg",
+            line_hl_group = "ErrorMsg",
           })
         end
       end,

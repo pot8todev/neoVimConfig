@@ -7,6 +7,8 @@ require("mason-lspconfig").setup({
 })
 require("lspconfig").lua_ls.setup({ settings = { diagnostics = { globals = { "vim" } } } }) --makes lsp recognize the "vim" keyword
 
+vim.b.Autocompile = false -- toggle autocampile locally on buffer
+
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true

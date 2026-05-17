@@ -16,7 +16,7 @@ require("bufferline").setup({
       italic = false,
     },
     buffer_visible = {
-      fg = Colors.sakura, -- Gray text for visible but inactive tabs
+      fg = Colors.gray, -- Gray text for visible but inactive tabs
     },
     buffer = {
       fg = Colors.sakura, -- Even darker gray for fully inactive tabs

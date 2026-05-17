@@ -1,13 +1,16 @@
-local M = {}
 -------------------Code Runner------------------//
 vim.keymap.set("n", "<leader>c>", function()
   _G.fileGroup = vim.fn.input("set fileGroup: ")
 end, { desc = "set global filePath" })
 
-vim.keymap.set("n", "<leader>a", function()
-  vim.b.Autocompile = not vim.b.Autocompile
-end, { desc = "toggle AutoCompile" })
+vim.keymap.set({ "n" }, "<leader>a", function()
+  vim.cmd("lua print(string.format('AutoCompile: %s',vim.b.Autocompile))")
+end, { remap = true, silent = true, desc = "toggle AutoCompile" })
 
+vim.keymap.set({ "n" }, "<leader>a!", function()
+  vim.b.Autocompile = not vim.b.Autocompile
+  vim.cmd("lua print(string.format('AutoCompile: %s',vim.b.Autocompile))")
+end, { remap = true, silent = true, desc = "toggle AutoCompile" })
 local build_cmd = function(target, file_type)
   local cmd
   if file_type == "lua" then
@@ -26,7 +29,6 @@ local build_cmd = function(target, file_type)
   end
   return cmd
 end
-M.build_cmd = build_cmd
 -------------------Creating buffer------------------//
 
 _G.runner_win = _G.runner_win or nil
@@ -100,4 +102,3 @@ local function openFloatTerminal()
     border = "rounded",
   })
 end
-return M

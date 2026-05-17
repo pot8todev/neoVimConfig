@@ -17,7 +17,6 @@ return {
     lualine_require.require = require
 
     local icons = LazyVim.config.icons
-
     vim.o.laststatus = vim.g.lualine_laststatus
 
     local opts = {
@@ -125,6 +124,19 @@ return {
       })
     end
 
+    table.insert(opts.sections.lualine_x, 1, {
+      function()
+        if vim.b.Autocompile then
+          return "AutoCompile"
+        else
+          return "AutoCompile"
+        end
+      end,
+      color = function()
+        return vim.b.Autocompile and { fg = "#98BB6C" } -- green
+          or { fg = "#ff5555" } -- red
+      end,
+    })
     return opts
   end,
 }
